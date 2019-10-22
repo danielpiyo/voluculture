@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'voluculture';
+  year: any;
+
+  ngOnInit() {
+    
+    this.year = (new Date()).getFullYear();
+  }
 }

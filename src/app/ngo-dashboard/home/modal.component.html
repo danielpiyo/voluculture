@@ -1,0 +1,118 @@
+<h1 mat-dialog-title>Hi {{data.org_name}}</h1>
+<div mat-dialog-content>
+        <div>
+                <mat-card >
+                  <mat-accordion class="details-headers-align">
+                    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Organisation
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          Edit your Organisation details
+                          <!-- <mat-icon>account_circle</mat-icon> -->
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+        
+                      <mat-form-field>
+                        <input matInput placeholder="Organisation name" [(ngModel)]="data.org_name" #org_name="ngModel"
+                          name="org_name" />
+                      </mat-form-field>
+        
+                      <mat-form-field>
+                        <input matInput placeholder="email" [(ngModel)]="data.email" #email="ngModel" name="email"
+                          required>
+                      </mat-form-field>
+        
+                      <mat-form-field>
+                        <input matInput type="number" placeholder="Founded Year" [(ngModel)]="data.fyear" #fyear="ngModel" name="fyear" required >
+                      </mat-form-field>                      
+        
+        
+                      <mat-action-row>
+                        <button mat-button color="primary" (click)="nextStep()">Next</button>
+                      </mat-action-row>
+                    </mat-expansion-panel>
+        
+                    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Contact
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          Input Details
+                          <!-- <mat-icon>map</mat-icon> -->
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+        
+                      <mat-form-field>
+                        <input matInput placeholder="website Url" [(ngModel)]="data.url" #url="ngModel" name="url"
+                          required>
+                      </mat-form-field>
+        
+                      <mat-form-field>
+                        <input matInput placeholder="Location" [(ngModel)]="data.location" #location="ngModel"
+                          name="location" required>
+                      </mat-form-field>
+        
+                      <mat-form-field>
+                        <input matInput placeholder="Telephone" [(ngModel)]="data.phone" #phone="ngModel" name="phone"
+                          required>
+                      </mat-form-field>
+        
+                      <mat-form-field>
+                        <input matInput placeholder="Address" [(ngModel)]="data.address" #address="ngModel" name="address"
+                          required>
+                      </mat-form-field>
+        
+                      <mat-action-row>
+                        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                        <button mat-button color="primary" (click)="nextStep()">Next</button>
+                      </mat-action-row>
+                    </mat-expansion-panel>
+        
+                    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Services
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          Input what you do
+                          <!-- <mat-icon>date_range</mat-icon> -->
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+        
+        
+                      <mat-form-field>
+                        <textarea matInput type="text" placeholder="Vision & Mission" [(ngModel)]="data.mvision"
+                          #mvision="ngModel" name="mvision" required></textarea>
+                      </mat-form-field>
+        
+                      <mat-form-field>
+                        <textarea matInput type="text" placeholder="Shorr Description" [(ngModel)]="data.description"
+                          #description="ngModel" name="description" required></textarea>
+                      </mat-form-field>
+        
+                      <mat-form-field>
+                        <textarea matInput type="text" placeholder="We are" [(ngModel)]="data.we_are" #we_are="ngModel"
+                          name="we_are" required></textarea>
+                      </mat-form-field>
+        
+                      <mat-form-field>
+                        <textarea matInput type="text" placeholder="We do" [(ngModel)]="data.we_do" #we_do="ngModel"
+                          name="we_do" required></textarea>
+                      </mat-form-field>
+                      <mat-action-row>
+                        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                        <button mat-button color="primary" (click)="submitEditedProfile(); onNoClick()">Submit</button>
+                      </mat-action-row>
+                    </mat-expansion-panel>
+        
+                  </mat-accordion>
+        
+                </mat-card>
+              </div>
+</div>
+<div mat-dialog-actions>  
+  <button mat-button color="warn" (click)="onNoClick()">Cancel Editing?</button>
+</div>

@@ -1,0 +1,20 @@
+
+<div>
+    <mat-card>        
+        <mat-form-field>
+            <input matInput placeholder="User Name" [(ngModel)]="regModel.username" #username="ngModel" name="username"
+              required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Password" [(ngModel)]="regModel.password" #password="ngModel"
+              name="password" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Confirm Password" [(ngModel)]="regModel.cpassword" #cpassword="ngModel" name="cpassword"
+              required>
+          </mat-form-field>
+         
+    </mat-card>
+</div>

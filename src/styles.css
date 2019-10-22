@@ -1,1 +1,117 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+/* You can add global styles to this file, and also import other style files */
+
+/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+
+.alert {
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    
+}
+.alert-success{
+    color: #6edb85;
+    background-color: #afebcf;
+    border-color: #a9e7c8;
+}
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+/* .jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: rgb(136, 136, 136);
+} */
+
+.menu_links { cursor: pointer; }
+
+.toggleMenuStyle {
+    display: block;
+}
+.ale{
+    width: 300px;
+    position: relative;
+}
+
+  .mat-tab-body-wrapper {
+    color: rgb(34, 32, 32);
+   
+  }
+  .mat-tab-label.mat-tab-label-active {
+    background-color: #c1dfe0;
+
+  }
+  .logo{
+    border-radius:60px;
+     border:solid 2px gray;
+     background-color: rgb(178, 226, 226);
+     margin-top: 0px;
+     
+  }
+
+  .navbar-brand {
+    float: left;
+    height: 70px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+  .container {
+    padding-right: 7px;
+    padding-left: 7px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.App-logo{
+    animation: App-logo-spin infinite 20s linear;
+      height: 80px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+}
+@keyframes App-logo-spin{
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/* .blue-background {
+    background: rgb(160, 231, 213);
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    border: solid 1.5px rgb(160, 231, 213);       
+  } */
+.blue-background {
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    border: solid 1.5px rgb(236, 198, 148);;  
+    background: rgb(2, 33, 41);
+    background: -webkit-linear-gradient(to bottom, #0033A1, rgb(211, 194, 146));
+    background: linear-gradient(to bottom, #0033A1, rgb(2, 33, 41));
+  }
+  
+.form-control{
+    text-align: center;     
+    height: 34px;   
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;    
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    }
+   

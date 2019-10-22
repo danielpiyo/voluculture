@@ -1,0 +1,102 @@
+<div class="float-content" fxLayout="column">
+    <div fxHide.lt-sm>
+        <div fxLayout="row" fxLayoutGap="2%">
+            <div fxFlex="100" >
+                    <div style="text-align: center"><alert></alert></div>
+            </div>
+            
+        </div> <br>
+        <div fxLayout="row" fxLayoutGap="2%">
+            <div fxFlex="60" fxFlexOffset="2" style="text-align: center">
+                <mat-card>
+                        <h2>Together we can change the world</h2>
+                </mat-card>
+            </div>
+            <div fxFlex="40" class="logsigup loginBanner">
+                <div *ngIf="mode=='login'">
+                    <h2 style="text-align: center">Login To access your account</h2>
+                </div>
+                <div *ngIf="mode=='signup'">
+                    <h2 style="text-align: center">Sign Up an account with Us today</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="2%" fxLayout.lt-sm="column">
+        <div fxFlex="10" fxFlexOffset="2"> </div>
+        <div fxFlex="30"> <img src="../../assets/images/logo.png" alt="Voluculture" width="420" height="300"></div>
+        <div fxFlex="10" >
+            <div fxHide fxShow.lt-sm> <hr></div>
+            <div></div>
+        </div>
+        <div fxFlex="40" class="logsigup">
+            <div *ngIf="mode=='login'">                
+                    <mat-card>
+                        <mat-label>
+                            UserName:
+                        </mat-label>
+                        <mat-form-field style="margin-left: 12%">
+                            <input matInput placeholder="Enter Username" [(ngModel)]="loginDetails.username" #username="ngModel"
+                                name="username" required/>
+                        </mat-form-field><br>
+                        <mat-label>
+                            Password:
+                        </mat-label>
+                        <mat-form-field style="margin-left: 14%">
+                            <input matInput type="password" placeholder="Password" [(ngModel)]="loginDetails.password" #password="ngModel"
+                                name="password" required/>
+                        </mat-form-field><br>
+                        <div class="button-row">
+                            <button mat-raised-button color="primary" (click)="login()" [disabled]="loading">Sign In</button>
+                            <img *ngIf="loading"
+                                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    
+                        </div> <br>
+                        <hr>
+                        <a mat-button color="primary" (click)="signUp()"><b> Dont have an Account? Sign up Now </b></a>
+                    
+                    </mat-card>
+
+            </div>
+            <div *ngIf="mode=='signup'" class="logsigup">
+                <mat-card>
+                    <mat-label>
+                        UserName:
+                    </mat-label>
+                    <mat-form-field style="margin-left: 12%">
+                        <input matInput placeholder="Enter Username" [(ngModel)]="registratioModel.username" #username="ngModel"
+                            name="username" required/>
+                    </mat-form-field><br>
+                    <mat-label>
+                        Password:
+                    </mat-label>
+                    <mat-form-field style="margin-left: 14%">
+                        <input matInput type="password" placeholder="Password" [(ngModel)]="registratioModel.password"
+                            #password="ngModel" name="password" required/>
+                    </mat-form-field><br>
+                    <mat-label>
+                        Confirm Password:
+                    </mat-label>
+                    <mat-form-field>
+                        <input matInput type="password" placeholder="Confirm Password" [(ngModel)]="registratioModel.cpassword"
+                            #cpassword="ngModel" name="cpassword" required/>
+                    </mat-form-field>
+
+                    <div class="button-row">
+                        <button mat-raised-button color="primary" (click)="registerNow()"
+                            [disabled]="loading">signUp</button>
+                        <img *ngIf="loading"
+                            src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+
+                    </div> <br>
+                    <hr>
+                    <a mat-button color="primary" (click)="signIn()"><b> Have an Account? Sign In </b></a>
+
+                </mat-card>
+
+            </div>
+        </div>
+    </div>
+    
+</div>

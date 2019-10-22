@@ -1,0 +1,41 @@
+.float-content{
+    /* background-color: white; */
+    position: relative;
+    padding: 2%;
+    }
+    /* login */
+    .example-container {
+        display: flex;
+        flex-direction: column;
+        background-color: azure;
+        border-radius: 6px;                
+      }
+      .form-control{
+        width: 50%;
+        text-align: left;
+      }
+      .form-holder{
+        margin-top: 5%;
+      }
+      .button-row{
+        position: relative;
+        margin-right: 30%;
+        margin-left: 30%;
+         
+      }
+      
+      h1{        
+        line-height: 110%;
+        margin: 2.8rem 0 1.68rem 0;
+        font-size: 60px;
+}  
+.orange.lighten-1 {
+    background-color: #ffa726 !important;
+}
+.logsigup{
+  border-radius: 6px;
+  background-color: antiquewhite;
+}
+.loginBanner{
+  margin-right: 25px;
+}
