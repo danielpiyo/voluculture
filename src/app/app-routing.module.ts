@@ -8,6 +8,7 @@ import { OpportunitiesComponent } from './ngo-dashboard/opportunities/opportunit
 import { ActivitiesEventsComponent } from './ngo-dashboard/activities-events/activities-events.component';
 import { ProfileComponent } from './ngo-dashboard/profile/profile.component';
 import { AuthGuard } from './_guard/auth.guard';
+import { NewOpportunityComponent } from './ngo-dashboard/new-opportunity/new-opportunity.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'dashboard', component:NgoDashboardComponent, canActivate:[AuthGuard], children:[
                   {path:'', component:HomeComponent},
                   {path:'opportunities', component:OpportunitiesComponent},
+                  {path:'new-opportunity', component: NewOpportunityComponent},
                   {path:'events', component:ActivitiesEventsComponent},
                   {path:'profile', component:ProfileComponent}
   ]},  

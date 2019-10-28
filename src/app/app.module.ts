@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NgoDashboardComponent } from './ngo-dashboard/ngo-dashboard.component';
-import { HomeComponent, Modal } from './ngo-dashboard/home/home.component';
+import { HomeComponent, Modal, OpportunityModal, ActivityModal } from './ngo-dashboard/home/home.component';
 import { OpportunitiesComponent } from './ngo-dashboard/opportunities/opportunities.component';
 import { ProfileComponent } from './ngo-dashboard/profile/profile.component';
 import { ContactComponent } from './ngo-dashboard/contact/contact.component';
@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './_guard/auth.guard';
 import {AlertComponent} from './_directives/index';
 import { LoginService, AlertService, PagerService } from './_service/index';
+import { NewOpportunityComponent } from './ngo-dashboard/new-opportunity/new-opportunity.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +29,14 @@ import { LoginService, AlertService, PagerService } from './_service/index';
     NgoDashboardComponent,
     HomeComponent,
     Modal,
+    OpportunityModal,
+    ActivityModal,
     AlertComponent,
     OpportunitiesComponent,
     ProfileComponent,
     ContactComponent,
-    ActivitiesEventsComponent
+    ActivitiesEventsComponent,
+    NewOpportunityComponent
   ],
   imports: [
     BrowserModule,
@@ -64,11 +68,12 @@ import { LoginService, AlertService, PagerService } from './_service/index';
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     HttpClientModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule
 
   ],
   entryComponents: [
-    Modal
+    Modal,OpportunityModal,ActivityModal
   ],
   providers: [AuthGuard,
     LoginService,
