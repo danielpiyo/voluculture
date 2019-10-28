@@ -1,0 +1,49 @@
+<mat-card>
+    <mat-card-header style="text-align: center">
+        <h2> Adding Opportunity</h2>
+    </mat-card-header>
+    <hr>
+    <div class="opportunity-container">
+        <mat-form-field appearance="outline">
+            <mat-label>Opportunity Name</mat-label>
+            <input matInput placeholder="Opportunity Name" [(ngModel)]="oppToSubmit.opp_name" #opp_name="ngModel"
+            name="opp_name" >
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Opportunity Location</mat-label>
+            <input matInput placeholder="Opportunity location" [(ngModel)]="oppToSubmit.opp_location" #opp_location="ngModel"
+            name="opp_location" >
+        </mat-form-field><br>
+
+        <mat-form-field>
+            <mat-label>Skills Required</mat-label>
+            <textarea matInput placeholder="Skill" [(ngModel)]="oppToSubmit.opp_skills" #opp_skills="ngModel" name="opp_skills"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="Description" [(ngModel)]="oppToSubmit.opp_description" #opp_description="ngModel" name="opp_description"></textarea>
+        </mat-form-field><br>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Start Date</mat-label>
+            <input matInput placeholder="Start Date" [matDatepicker]="picker" (focus)="picker.open()" 
+            [(ngModel)]="oppToSubmit.opp_start" #opp_start="ngModel" name="opp_start" required readonly>
+        </mat-form-field>
+        <mat-datepicker #picker></mat-datepicker>
+
+        <mat-form-field appearance="outline">
+                        <mat-label>Opportunity Period:</mat-label>
+                        <mat-select placeholder="Select" [(ngModel)]="oppToSubmit.opp_duration" #opp_duration="ngModel" name="opp_duration" >
+                            <mat-option value="3 months">3 Months</mat-option>
+                            <mat-option value="5 months">5 Months</mat-option>
+                            <mat-option value="1 year">1 Year</mat-option>
+                            <mat-option value="2 years">2 Years</mat-option>
+                        </mat-select>
+                    </mat-form-field>        
+        <hr>
+        <mat-card mat-dialog-actions>
+            <button mat-button color="warn" (click)="onNoClick()">CANCEL</button>
+            <button mat-button color="primary" (click)="submitOpportunity()">SUBMIT</button>
+        </mat-card>
+    </div>
+</mat-card>

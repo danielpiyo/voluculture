@@ -1,13 +1,14 @@
 export class NgoProfile{
 token: String
-email:String
 description :String
-url :String
+town :String
+country: String
 fyear :Date
 location :String
 phone :String
 address :String
-mvision :String
+vission :String
+mission: String
 we_do :String
 we_are :String
 org_name: String

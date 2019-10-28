@@ -5,28 +5,28 @@
     </div>
   </div>
 
-  <div class="row-float-sections colored-tiles" fxLayout="row" fxLayoutGap="2%" fxLayout.lt-sm="column">
+  <mat-card class="row-float-sections colored-tiles" fxLayout="row" fxLayoutGap="2%" fxLayout.lt-sm="column">
     <div class="section-1-cnt tile-1 white-color shadow invoice-raised" fxFlex="40" fxFlexOffset="2">
-      <mat-card class="stats1-title ">
-        <mat-card-header class="h2-header">
+      <mat-card class="stats1-title " (click)="addOpportunity()">
+        <mat-card-header class="h2-header" matTooltip="Add an Opportunity">
           Opportunities
           <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon> -->
         </mat-card-header>
 
       </mat-card>
-    </div>
+    </div> <br>
     <div class="section-1-cnt blue-solid shadow invoice-due" fxFlex="20">
-      <mat-card class="stats1-title ">
-        <mat-card-header class="h2-header">
+      <mat-card class="stats1-title " (click)="addActivity()">
+        <mat-card-header class="h2-header" matTooltip="Add an Event">
           Events
           <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon> -->
         </mat-card-header>
 
       </mat-card>
-    </div>
+    </div> <br>
     <div class="section-1-cnt yellow-tile shadow invoice-paid" fxFlex="30">
       <mat-card class="stats1-title ">
-        <mat-card-header class="h2-header">
+        <mat-card-header class="h2-header" matTooltip="Check volunteers subscribed">
           Volunteers
           <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon> -->
         </mat-card-header>
@@ -34,18 +34,22 @@
       </mat-card>
     </div>
 
-  </div>
+  </mat-card>
   <hr>
   <div class="detail-ngo panel">
-      <div class="panel-heading">
-          <h3 class="panel-title"> </h3>
-        </div>
-      <div class="panel-heading" *ngIf="mode=='already-set'">
-        <h3 class="panel-title"> Organisation Profile</h3>
-      </div>
+    <div class="panel-heading">
+      <h3 class="panel-title"> </h3>
     </div>
+    <div class="panel-heading" *ngIf="mode == 'already-set'">
+      <h3 class="panel-title"> Organisation Profile</h3>
+    </div>
+    <div class="panel-heading" *ngIf=" mode == 'set'">
+      <h3 class="panel-title"> Set Up your Profile</h3>
+    </div>
+  </div>
   <div fxLayout="row" fxLayoutGap="2%" fxLayout.lt-sm="column" class="detail-ngo panel">
-    <div *ngIf="mode=='set'">
+    
+    <div *ngIf="mode == 'set'">
       <div fxFlex="100">
         <mat-card>
           <mat-accordion class="details-headers-align">
@@ -55,7 +59,7 @@
                   Organisation
                 </mat-panel-title>
                 <mat-panel-description>
-                  Input details
+                  You are two steps away from Using voluculture
                   <!-- <mat-icon>account_circle</mat-icon> -->
                 </mat-panel-description>
               </mat-expansion-panel-header>
@@ -66,16 +70,15 @@
               </mat-form-field>
 
               <mat-form-field>
-                <input matInput placeholder="email" [(ngModel)]="ngoProfile.email" #email="ngModel" name="email"
-                  required>
-              </mat-form-field>
-
-              <mat-form-field>
                 <input matInput placeholder="Founded Year" [matDatepicker]="picker" (focus)="picker.open()"
                   [(ngModel)]="ngoProfile.fyear" #fyear="ngModel" name="fyear" required readonly>
               </mat-form-field>
               <mat-datepicker #picker></mat-datepicker>
 
+              <mat-form-field>
+                <input matInput placeholder="country" [(ngModel)]="ngoProfile.country" #country="ngModel" name="country"
+                  required>
+              </mat-form-field>
 
               <mat-action-row>
                 <button mat-button color="primary" (click)="nextStep()">Next</button>
@@ -88,13 +91,13 @@
                   Contact
                 </mat-panel-title>
                 <mat-panel-description>
-                  Input Details
+                  You are almost there!! One step to go
                   <!-- <mat-icon>map</mat-icon> -->
                 </mat-panel-description>
               </mat-expansion-panel-header>
 
               <mat-form-field>
-                <input matInput placeholder="website Url" [(ngModel)]="ngoProfile.url" #url="ngModel" name="url"
+                <input matInput placeholder="Town/ City" [(ngModel)]="ngoProfile.town" #town="ngModel" name="town"
                   required>
               </mat-form-field>
 
@@ -102,14 +105,13 @@
                 <input matInput placeholder="Location" [(ngModel)]="ngoProfile.location" #location="ngModel"
                   name="location" required>
               </mat-form-field>
-
               <mat-form-field>
-                <input matInput placeholder="Telephone" [(ngModel)]="ngoProfile.phone" #phone="ngModel" name="phone"
+                <input matInput placeholder="Address" [(ngModel)]="ngoProfile.address" #address="ngModel" name="address"
                   required>
               </mat-form-field>
 
               <mat-form-field>
-                <input matInput placeholder="Address" [(ngModel)]="ngoProfile.address" #address="ngModel" name="address"
+                <input matInput placeholder="Telephone" [(ngModel)]="ngoProfile.phone" #phone="ngModel" name="phone"
                   required>
               </mat-form-field>
 
@@ -125,35 +127,40 @@
                   Services
                 </mat-panel-title>
                 <mat-panel-description>
-                  Input what you do
+                  Fill in and click Submit!! Yes you are done.
                   <!-- <mat-icon>date_range</mat-icon> -->
                 </mat-panel-description>
               </mat-expansion-panel-header>
 
 
               <mat-form-field>
-                <textarea matInput type="text" placeholder="Vision & Mission" [(ngModel)]="ngoProfile.mvision"
-                  #mvision="ngModel" name="mvision" required></textarea>
+                <textarea matInput type="text" placeholder="Vission " [(ngModel)]="ngoProfile.vission"
+                  #vission="ngModel" name="vission" required></textarea>
               </mat-form-field>
 
               <mat-form-field>
-                <textarea matInput type="text" placeholder="Shorr Description" [(ngModel)]="ngoProfile.description"
+                <textarea matInput type="text" placeholder="Mission " [(ngModel)]="ngoProfile.mission"
+                  #mission="ngModel" name="mission" required></textarea>
+              </mat-form-field>
+
+              <mat-form-field>
+                <textarea matInput type="text" placeholder="Short Description" [(ngModel)]="ngoProfile.description"
                   #description="ngModel" name="description" required></textarea>
               </mat-form-field>
 
               <mat-form-field>
-                <textarea matInput type="text" placeholder="We are" [(ngModel)]="ngoProfile.we_are" #we_are="ngModel"
-                  name="we_are" required></textarea>
+                <textarea matInput type="text" placeholder="Who We are" [(ngModel)]="ngoProfile.we_are"
+                  #we_are="ngModel" name="we_are" required></textarea>
               </mat-form-field>
 
               <mat-form-field>
-                <textarea matInput type="text" placeholder="We do" [(ngModel)]="ngoProfile.we_do" #we_do="ngModel"
+                <textarea matInput type="text" placeholder="What We do" [(ngModel)]="ngoProfile.we_do" #we_do="ngModel"
                   name="we_do" required></textarea>
               </mat-form-field>
               <mat-action-row>
                 <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                <button mat-button color="primary" (click)="submitProfile()"  [disabled]="loading">Submit
-                    <img *ngIf="loading"
+                <button mat-button color="primary" (click)="submitProfile()" [disabled]="loading">Submit
+                  <img *ngIf="loading"
                     src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                 </button>
               </mat-action-row>
@@ -166,73 +173,65 @@
     </div>
   </div>
 
-  <div *ngIf="mode=='already-set'" >
-      
+  <div *ngIf="mode == 'already-set'">
+
     <mat-card fxLayoutGap="2%" fxLayout.lt-sm="column" *ngFor="let pulledData of ngoPulledData">
       <div fxFlex="50">
-        <mat-label class="bagde">
-            <span><i>Organisation:</i></span> 
-        </mat-label> 
+        <div class="alert-success" style="text-align: center">
+          <h3>Organisation Details</h3>
+        </div>
         <mat-card>
-            {{pulledData.org_name}}
-        </mat-card><br>
-        <mat-label>
-           <span><i> Email:</i></span>
-        </mat-label> 
-        <mat-card>
-            {{pulledData.email}}
+          Organisation: {{pulledData.ORG_NAME}}
         </mat-card>
-        <br>
-        <mat-label>
-           <span><i> Founded Year:</i></span>
-        </mat-label> 
         <mat-card>
-            {{pulledData.fyear}}
+          Founded Year: {{pulledData.FOUNDED_YEAR}}
         </mat-card>
-        <br>
-        <mat-label>
-            <span><i>Telephone: </i></span>
-        </mat-label> 
-        <mat-card>
-            {{pulledData.phone}}
-        </mat-card>
-
 
       </div>
 
       <div fxFlex="50">
-        <mat-label>
-            Vision & Mission:
-        </mat-label>
+        <div class="alert-success" style="text-align: center">
+          <h3>Contact Details</h3>
+        </div>
         <mat-card>
-            {{pulledData.mvision}}
-        </mat-card><br>
-        <mat-label>
-            what we do :
-        </mat-label>
+          Email: {{pulledData.EMAIL}}
+        </mat-card>
         <mat-card>
-            <textarea matInput type="text" placeholder="{{pulledData.we_do}}" cols="40" rows="3" readonly></textarea>
-        </mat-card> <br>
-        <mat-label>
-            Who We are:
-        </mat-label><br>
+          Telephone: {{pulledData.MOBILE_NUMBER}}
+        </mat-card>
+      </div>
+    </mat-card>
+    <div fxLayoutGap="2%" fxLayout.lt-sm="column">
+      <div class="alert-success" fxFlex="100" style="text-align: center">
+        <h3>Vission & Mission Details</h3>
+      </div>
+    </div>
+    <mat-card fxLayoutGap="2%" fxLayout.lt-sm="column" *ngFor="let pulledData of ngoPulledData">
+
+      <div fxFlex="50">
+        <mat-card>
+          Vision : {{pulledData.VISSION}}
+        </mat-card>
+      </div>
+
+      <div fxFlex="50">
 
         <mat-card>
-            <textarea matInput type="text" placeholder="{{pulledData.we_are}}" cols="40" rows="3" readonly></textarea>
-        </mat-card>
+          Mission: {{pulledData.MISSION}}
+        </mat-card><br>
 
       </div>
     </mat-card>
   </div>
-  <div *ngIf="mode=='already-set'">
-    <mat-card fxLayoutGap="2%" fxLayout.lt-sm="column">
+  <div *ngIf="mode == 'already-set'">
+    <div fxLayoutGap="2%" fxLayout.lt-sm="column">
       <div fxFlex="100">
-          <mat-action-row>            
-              <button mat-button color="primary" (click)="openDialog()">Edit your Details</button>
-            </mat-action-row>
+        <mat-action-row>
+          <button mat-button color="primary" (click)="openDialog()">Edit your Details</button>
+        </mat-action-row>
       </div>
 
-    </mat-card>
+    </div>
 
   </div>
 </div>

@@ -15,6 +15,15 @@ export class ProfileService {
     return this.http.post(`${environment.baseUrl}/newProfile`,ngoDetails)
   }
   getProfileData(token:Token){
-    return this.http.post(`${environment.baseUrl}/myNgodetails`,token)
+    return this.http.post(`${environment.baseUrl}/myProfiledetails`,token)
+  }
+
+  // submiting data
+  updateProfile(updateDate: NgoProfile){
+    return this.http.post(`${environment.baseUrl}/updateProfile`, updateDate)
+  }
+
+  createNgoProfile(ngoDetails:NgoProfile){
+    return this.http.post(`${environment.baseUrl}/updateProfileNgo`, ngoDetails )
   }
 }

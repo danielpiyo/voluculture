@@ -22,9 +22,11 @@ export class LoginService {
     localStorage.removeItem('currentToken');
   }
 // registration function
-registerNgo(register: RegistrationPayload){
+registerVolu(register: RegistrationPayload){
   return this.http.post(`${environment.baseUrl}/register`, register)
-
 }
 
+getCategories(){
+  return this.http.get(`${environment.baseUrl}/category`);
+}
 }

@@ -1,4 +1,12 @@
-<h1 mat-dialog-title>Hi {{data.org_name}}</h1>
+<div class="alert-success">
+  <div style="text-align: right"> 
+      <button mat-button color="warn" (click)="onNoClick()">CLOSE
+      <span matBadge="X" matBadgeColor="warn"></span>
+    </button>
+   </div>
+<div style="text-align: center">
+    <h2 mat-dialog-title>Hi {{data.org_name}}</h2>
+</div>
 <div mat-dialog-content>
         <div>
                 <mat-card >
@@ -17,16 +25,17 @@
                       <mat-form-field>
                         <input matInput placeholder="Organisation name" [(ngModel)]="data.org_name" #org_name="ngModel"
                           name="org_name" />
-                      </mat-form-field>
-        
-                      <mat-form-field>
-                        <input matInput placeholder="email" [(ngModel)]="data.email" #email="ngModel" name="email"
-                          required>
-                      </mat-form-field>
+                      </mat-form-field>     
+                      
         
                       <mat-form-field>
                         <input matInput type="number" placeholder="Founded Year" [(ngModel)]="data.fyear" #fyear="ngModel" name="fyear" required >
-                      </mat-form-field>                      
+                      </mat-form-field> 
+                      
+                      <mat-form-field>
+                        <input matInput placeholder="country" [(ngModel)]="data.country" #country="ngModel" name="country"
+                          required>
+                      </mat-form-field>
         
         
                       <mat-action-row>
@@ -46,7 +55,7 @@
                       </mat-expansion-panel-header>
         
                       <mat-form-field>
-                        <input matInput placeholder="website Url" [(ngModel)]="data.url" #url="ngModel" name="url"
+                        <input matInput placeholder="Town/ City" [(ngModel)]="data.town" #town="ngModel" name="town"
                           required>
                       </mat-form-field>
         
@@ -84,12 +93,17 @@
         
         
                       <mat-form-field>
-                        <textarea matInput type="text" placeholder="Vision & Mission" [(ngModel)]="data.mvision"
-                          #mvision="ngModel" name="mvision" required></textarea>
+                        <textarea matInput type="text" placeholder="Vision " [(ngModel)]="data.vission"
+                          #vission="ngModel" name="vission" required></textarea>
+                      </mat-form-field>
+
+                      <mat-form-field>
+                        <textarea matInput type="text" placeholder="Mission" [(ngModel)]="data.mission"
+                          #mvision="ngModel" name="mission" required></textarea>
                       </mat-form-field>
         
                       <mat-form-field>
-                        <textarea matInput type="text" placeholder="Shorr Description" [(ngModel)]="data.description"
+                        <textarea matInput type="text" placeholder="Short Description" [(ngModel)]="data.description"
                           #description="ngModel" name="description" required></textarea>
                       </mat-form-field>
         
@@ -115,4 +129,5 @@
 </div>
 <div mat-dialog-actions>  
   <button mat-button color="warn" (click)="onNoClick()">Cancel Editing?</button>
+</div>
 </div>

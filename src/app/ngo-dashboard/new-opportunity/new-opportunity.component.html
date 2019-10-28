@@ -1,0 +1,32 @@
+<div class="opportunity-container" *ngIf="mode=='new'">
+    <mat-form-field appearance="outline">
+            <mat-label>Opportunity Name</mat-label>
+        <input matInput placeholder="Opportunity Name">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+            <mat-label>Opportunity Location</mat-label>
+        <input matInput placeholder="Opportunity location">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+            <mat-label>Skills Required</mat-label>
+        <textarea matInput placeholder="Skill"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Start Date" [matDatepicker]="picker" (focus)="picker.open()"
+            required readonly>
+    </mat-form-field>
+    <mat-datepicker #picker></mat-datepicker>   
+
+    <mat-form-field appearance="outline">
+            <mat-label>Select</mat-label>
+        <mat-select placeholder="Select">
+            <mat-option value="option">Option</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
