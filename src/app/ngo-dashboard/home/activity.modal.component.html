@@ -1,45 +1,87 @@
 <mat-card>
-        <mat-card-header style="text-align: center">
-            <h2> Adding Activity</h2>
-        </mat-card-header>
+    <div style="text-align: right">
+        <button mat-button color="warn" (click)="onNoClick()">CLOSE
+            <span matBadge="X" matBadgeColor="warn"></span>
+        </button>
+    </div>
+    <mat-card-header class="alert-success" style="text-align: center; border-radius: 4%;">
+        <h2> Adding Activity</h2>
+    </mat-card-header>
+    <hr>
+    <div class="opportunity-container">
+            <mat-form-field  appearance="outline">
+                    <mat-label>Activity Category</mat-label>
+                    <mat-select placeholder="Select"  [(ngModel)]="act_category" name="act_category" >
+                        <mat-option *ngFor="let cat of categoryEvent" value={{cat.CAT_NAME}}>{{cat.CAT_NAME}}</mat-option>
+                    </mat-select>                  
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+                <mat-label>Activity Type</mat-label>
+                <input matInput placeholder="Activity Type" [(ngModel)]="actToSubmit.act_type" #act_type="ngModel"
+                    name="act_type">
+            </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Activity Name</mat-label>
+            <input matInput placeholder="Activity Name" [(ngModel)]="actToSubmit.act_name" #act_name="ngModel"
+                name="act_name">
+        </mat-form-field> <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Activity Location</mat-label>
+            <input matInput placeholder="Activity location" [(ngModel)]="actToSubmit.act_location"
+                #act_location="ngModel" name="act_location">
+        </mat-form-field> 
+
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="Description" [(ngModel)]="actToSubmit.act_description"
+                #act_description="ngModel" name="act_description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Extra Information</mat-label>
+            <textarea matInput placeholder="Extra Information" [(ngModel)]="actToSubmit.act_extra" #act_extra="ngModel"
+                name="act_extra"></textarea>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Event Date</mat-label>
+            <input matInput placeholder="Start Date" [matDatepicker]="picker" (focus)="picker.open()"
+                [(ngModel)]="actToSubmit.act_start" #act_start="ngModel" name="act_start" required readonly>
+        </mat-form-field>
+        <mat-datepicker #picker></mat-datepicker>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Period:</mat-label>
+            <mat-select placeholder="Select" [(ngModel)]="actToSubmit.act_duration" #act_duration="ngModel"
+                name="act_duration">
+                <mat-option value="3 months">3 hrs</mat-option>
+                <mat-option value="5 months">5 hrs</mat-option>
+                <mat-option value="1 year">6 hrs</mat-option>
+                <mat-option value="2 years">12 hrs</mat-option>
+                <mat-option value="2 years">1 day</mat-option>
+                <mat-option value="2 years">1 Week</mat-option>
+                <mat-option value="2 years">2 Weeks</mat-option>
+            </mat-select>
+        </mat-form-field> <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Activity Start Time</mat-label>
+            <input matInput placeholder="Activity Start Time" [(ngModel)]="actToSubmit.act_start_time"
+                #act_start_time="ngModel" name="act_start_time">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Activity End Time</mat-label>
+            <input matInput placeholder="Activity End Time" [(ngModel)]="actToSubmit.act_end_time"
+                #act_end_time="ngModel" name="act_end_time">
+        </mat-form-field>
+
         <hr>
-        <div class="opportunity-container">
-            <mat-form-field appearance="outline">
-                <mat-label>Activity Name</mat-label>
-                <input matInput placeholder="Opportunity Name" [(ngModel)]="oppToSubmit.opp_name" #opp_name="ngModel"
-                name="opp_name" >
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Activity Location</mat-label>
-                <input matInput placeholder="Opportunity location" [(ngModel)]="oppToSubmit.opp_location" #opp_location="ngModel"
-                name="opp_location" >
-            </mat-form-field>    
-            
-            <mat-form-field>
-                <mat-label>Description</mat-label>
-                <textarea matInput placeholder="Description" [(ngModel)]="oppToSubmit.opp_description" #opp_description="ngModel" name="opp_description"></textarea>
-            </mat-form-field><br>
-    
-            <mat-form-field appearance="outline">
-                <mat-label>Start Date</mat-label>
-                <input matInput placeholder="Start Date" [matDatepicker]="picker" (focus)="picker.open()" 
-                [(ngModel)]="oppToSubmit.opp_start" #opp_start="ngModel" name="opp_start" required readonly>
-            </mat-form-field>
-            <mat-datepicker #picker></mat-datepicker>
-    
-            <mat-form-field appearance="outline">
-                            <mat-label>Activity Period:</mat-label>
-                            <mat-select placeholder="Select" [(ngModel)]="oppToSubmit.opp_duration" #opp_duration="ngModel" name="opp_duration" >
-                                <mat-option value="3 months">3 Months</mat-option>
-                                <mat-option value="5 months">5 Months</mat-option>
-                                <mat-option value="1 year">1 Year</mat-option>
-                                <mat-option value="2 years">2 Years</mat-option>
-                            </mat-select>
-                        </mat-form-field>        
-            <hr>
-            <mat-card mat-dialog-actions>
-                <button mat-button color="warn" (click)="onNoClick()">CANCEL</button>
-                <button mat-button color="primary" (click)="submitOpportunity()">SUBMIT</button>
-            </mat-card>
-        </div>
-    </mat-card>
+        <mat-card mat-dialog-actions>
+            <button mat-button color="warn" (click)="onNoClick()">CANCEL</button>
+            <button mat-button color="primary" (click)="postActivities()">SUBMIT</button>
+        </mat-card>
+    </div>
+
+</mat-card>

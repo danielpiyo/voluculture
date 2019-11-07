@@ -6,7 +6,7 @@ export class PagerService {
         // calculate total pages
         let totalPages = Math.ceil(totalItems / pageSize);
 
-        let startPage: number, endPage: number;
+        let startPage: number, endPage: number; 
         if (totalPages <= 1) {
             // less than 10 total pages so show all
             startPage = 1;

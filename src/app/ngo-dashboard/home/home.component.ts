@@ -7,6 +7,7 @@ import { ProfileService } from 'src/app/_service/profile.service';
 import { Router } from '@angular/router';
 import { Opportunity } from './opportunity.model';
 import { OpportunityService } from 'src/app/_service/opportunity.service';
+import { Activity } from './activity.model';
 
 @Component({
   selector: 'app-home',
@@ -16,13 +17,13 @@ import { OpportunityService } from 'src/app/_service/opportunity.service';
 export class HomeComponent implements OnInit {
   mode: string ;
   currentUser: User;
-  currentUserToken: any
+  currentUserToken: any;
   model: any;
-  ngoProfile: NgoProfile = new NgoProfile()
+  ngoProfile: NgoProfile = new NgoProfile();
   step = 0;
   ngoPulledData: any;
   loading = false;
-  requireToken: Token = new Token()
+  requireToken: Token = new Token();
 
   constructor(
     public dialog: MatDialog,
@@ -33,35 +34,32 @@ export class HomeComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.currentUserToken = JSON.parse(localStorage.getItem('currentToken'));
     this.checkProfile();
-    
-
-  }
+    }
 
   ngOnInit() {
-    console.log(this.currentUser)    
+    console.log(this.currentUser);
   }
 
   // check profile update condition
-  checkProfile() {    
+  checkProfile() {
+    // tslint:disable-next-line: triple-equals
     if (this.currentUser.PROFILE_SET_YN != 'N') {
       this.requireToken.token = this.currentUserToken;
       this.profileService.getProfileData(this.requireToken)
         .subscribe((response) => {
-          console.log('profile', response)
-          this.ngoPulledData = response
-          this.mode = 'already-set'
+          console.log('profile', response);
+          this.ngoPulledData = response;
+          this.mode = 'already-set';
         },
           error => {
             this.loading = false;
             console.log(error.error.message);
             this.alertService.error(error.error.message);
-          })
-    }
-    else {
+          });
+    } else {
       this.mode = 'set';
-      console.log('profile set',this.currentUser.PROFILE_SET_YN)
+      console.log('profile set', this.currentUser.PROFILE_SET_YN);
     }
-    
   }
 
 
@@ -78,7 +76,7 @@ export class HomeComponent implements OnInit {
 
   // submiting the profile
   submitProfile() {
-    this.model = this.ngoProfile.fyear.getFullYear()
+    this.model = this.ngoProfile.fyear.getFullYear();
     this.ngoProfile.fyear = this.model;
     this.ngoProfile.token = this.currentUserToken;
     console.log('payload', this.ngoProfile);
@@ -88,13 +86,12 @@ export class HomeComponent implements OnInit {
         console.log(response);
         this.alertService.success('You have successfully updated your Profile');
         this.getNgoProfile();
-       
       },
         error => {
           this.loading = false;
           console.log(error.message);
           this.alertService.error(error.message);
-        })
+        });
   }
 
   // getting ngo profile details
@@ -103,20 +100,21 @@ export class HomeComponent implements OnInit {
     this.requireToken.token = this.currentUserToken;
     this.profileService.getProfileData(this.requireToken)
       .subscribe((response) => {
-        console.log('profile', response)
-        this.ngoPulledData = response
-        this.mode = 'already-set'
+        console.log('profile', response);
+        this.ngoPulledData = response;
+        this.mode = 'already-set';
       },
         error => {
           this.loading = false;
           console.log(error.error.message);
           this.alertService.error(error.error.message);
-        })
+        });
   }
   // opening Modal
   openDialog(): void {
 
-    let dialogRef = this.dialog.open(Modal, {
+    // tslint:disable-next-line: no-use-before-declare
+    const dialogRef = this.dialog.open(Modal, {
       data: {
         org_name: this.ngoPulledData[0].ORG_NAME,
         town: this.ngoPulledData[0].TOWN,
@@ -141,25 +139,29 @@ export class HomeComponent implements OnInit {
   }
 
   // opportuity
-  addOpportunity(){
-    this.dialog.open(OpportunityModal)
+  addOpportunity() {
+    // tslint:disable-next-line: no-use-before-declare
+    this.dialog.open(OpportunityModal);
   }
 
   // Activity
-  addActivity(){
-    this.dialog.open(ActivityModal)
+  addActivity() {
+    // tslint:disable-next-line: no-use-before-declare
+    this.dialog.open(ActivityModal);
   }
 }
 
 // child component for modal
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'modal',
   templateUrl: 'modal.component.html',
 })
+// tslint:disable-next-line: component-class-suffix
 export class Modal {
   model: any;
   currentUserToken: any;
-  requireToken: Token = new Token()
+  requireToken: Token = new Token();
   step = 0;
   ngoEditProfile: NgoProfile = new NgoProfile();
 
@@ -189,38 +191,37 @@ export class Modal {
   }
   // submiting the edited profile
   submitEditedProfile() {
-    this.ngoEditProfile = this.data
+    this.ngoEditProfile = this.data;
     this.ngoEditProfile.token = this.currentUserToken;
-    console.log("edited", this.ngoEditProfile);
-    console.log("edited", this.ngoEditProfile.token);
+    console.log('edited', this.ngoEditProfile);
+    console.log('edited', this.ngoEditProfile.token);
     this.profileService.createNgoProfile(this.ngoEditProfile)
       .subscribe((response) => {
         this.alertService.success('Details updated succesfully');
         this.router.navigate(['/dashboard']);
-      })
+      });
   }
 
   // Adding opportunity
-
-
 }
 
 // child component for opportunity modal
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'opportunity-modal',
   templateUrl: 'opportunity.modal.component.html',
 })
+// tslint:disable-next-line: component-class-suffix
 export class OpportunityModal {
-  
-  year : any;
+  year: any;
   day: any;
   month: any;
   oppToSubmit: Opportunity = new Opportunity();
-  currentUser: User
-  currentToken: any
+  currentUser: User;
+  currentToken: any;
 
   constructor(
-    public dialogRef: MatDialogRef<OpportunityModal>,  
+    public dialogRef: MatDialogRef<OpportunityModal>,
     private alertService: AlertService,
     private router: Router,
     private opportunityService: OpportunityService,
@@ -233,50 +234,82 @@ export class OpportunityModal {
     this.dialogRef.close();
   }
 
-  submitOpportunity(){
+  submitOpportunity() {
     // formating the date
-    this.day = this.oppToSubmit.opp_start.getDay()
-    this.month = this.oppToSubmit.opp_start.getMonth()
-    this.year = this.oppToSubmit.opp_start.getFullYear()
+    this.day = this.oppToSubmit.opp_start.getDay();
+    this.month = this.oppToSubmit.opp_start.getMonth();
+    this.year = this.oppToSubmit.opp_start.getFullYear();
     // mapping the right variables
     this.oppToSubmit.entity_sys_id = this.currentUser.ENTITY_SYS_ID;
-    this.oppToSubmit.token = this.currentToken
-    this.oppToSubmit.opp_start = this.year + '-'+ this.month + '-' + this.day;
+    this.oppToSubmit.token = this.currentToken;
+    this.oppToSubmit.opp_start = this.year + '-' + this.month + '-' + this.day;
     console.log(this.oppToSubmit);
     this.opportunityService.createOpportunity(this.oppToSubmit)
-    .subscribe((response)=>{
-      console.log('response', response)
+    .subscribe((response) => {
+      console.log('response', response);
       this.router.navigate(['/dashboard/opportunities']);
       this.onNoClick();
     },
-    error=>{
+    error => {
       console.log(error.error.message);
-    })
-    
+    });
   }
-
-  
 }
 
 // child component for Activity modal
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'activity-modal',
   templateUrl: 'activity.modal.component.html',
 })
+// tslint:disable-next-line: component-class-suffix
 export class ActivityModal {
- 
+
+  categoryEvent: any;
+  actToSubmit: Activity = new Activity();
+  day: any;
+  month: any;
+  year: any;
+  currentUser: User;
+  currentToken: any;
 
   constructor(
-    public dialogRef: MatDialogRef<ActivityModal>,  
+    public dialogRef: MatDialogRef<ActivityModal>,
     private alertService: AlertService,
+    private activitiesServices: OpportunityService,
     private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-  
+      this.currentToken = JSON.parse(localStorage.getItem('currentToken'));
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      this.getCategories();
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  
+  getCategories() {
+    this.activitiesServices.getCategories()
+    .subscribe((response) => {
+      this.categoryEvent = response;
+    }, error => {
+      console.log('Error', error);
+    });
+  }
+  postActivities() {
+    console.log('ToSubmit', this.actToSubmit);
+    this.day = this.actToSubmit.act_start.getDay();
+    this.month = this.actToSubmit.act_start.getMonth();
+    this.year = this.actToSubmit.act_start.getFullYear();
+    this.actToSubmit.act_start = this.year + '-' + this.month + '-' + this.day;
+    this.actToSubmit.token = this.currentToken;
+    this.actToSubmit.entity_sys_id = this.currentUser.ENTITY_SYS_ID;
+    this.activitiesServices.createEvent(this.actToSubmit)
+    .subscribe((res) => {
+      console.log('Res', res);
+      this.onNoClick();
+    }, error => {
+      console.log('Error when submiting', error);
+    });
+  }
 }

@@ -1,9 +1,12 @@
 export class Activity{
     token: String
-    entity_sys_id: Number
+    entity_sys_id: Number 
     act_name: String
     act_location: String
-    act_description: String
+    act_description: String 
+    act_extra: String
+    act_category: String
+    act_type: String
     act_start: any
     act_duration: String
     act_start_time: any
